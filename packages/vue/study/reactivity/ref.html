@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../../dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app"></div>
+</body>
+
+<script>
+  const { ref, effect } = Vue
+
+  const obj = ref({ name: '张三' })
+
+
+  effect(() => {
+    document.querySelector('#app').innerText = obj.value.name
+  })
+
+  setTimeout(() => {
+    // 触发了一次 ref 的 get value
+    // 触发了一个 reactive 的 setter
+    obj.value.name = '李四'
+  }, 2000)
+</script>
+
+</html>

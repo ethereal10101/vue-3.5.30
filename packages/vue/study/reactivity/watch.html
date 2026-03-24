@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const { reactive, watch } = Vue;
+    const obj = reactive({
+        name: '光头强',
+    });
+    watch(() => obj.name, (newVal, oldVal) => {
+        console.log(`name属性变化了：从${oldVal}变成了${newVal}`);
+        document.querySelector('#app').innerText = `name属性变化了：从${oldVal}变成了${newVal}`;
+    });
+    setTimeout(() => {
+        obj.name = '熊大';
+    }, 2000);
+
+</script>
+
+</html>
